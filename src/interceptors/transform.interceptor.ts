@@ -15,11 +15,12 @@ class Response{
 @Injectable()
 export class TransformInterceptor implements NestInterceptor{
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    return next.handle().pipe(map(data => this.transformData(data)));
+    const className = context.getClass();
+    return next.handle().pipe(map(data => this.transformData(data,className)));
   }
 
-  private transformData(data){
-      console.log('transform interceptor');
+  private transformData(data,className){
+      console.log('transform interceptor',className);
       // const res = new Response();
       // res.data = data;
 

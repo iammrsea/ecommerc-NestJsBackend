@@ -16,7 +16,7 @@ export class User{
   @Exclude({toPlainOnly:true})
   password: string;
 
-  @Column({default: 'Employee'})
+  @Column({enum:['Admin','Employee','Customer']})
   role: string
 
   @CreateDateColumn()

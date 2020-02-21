@@ -12,7 +12,9 @@ import { SecurePasswordModule } from './secure-password/secure-password.module';
 import { NodemailerModule } from './nodemailer/nodemailer.module';
 import { AuthModule } from './auth/auth.module';
 
+
 import * as ormconfig from './ormconfig'
+import { CursorModule } from './cursor/cursor.module';
 
 
 
@@ -26,7 +28,8 @@ import * as ormconfig from './ormconfig'
     TypeOrmModule.forRoot(ormconfig),
     SecurePasswordModule,
     NodemailerModule,
-    AuthModule.forRoot()
+    AuthModule,
+    CursorModule
   ],
   controllers: [AppController],
   providers: [AppService],

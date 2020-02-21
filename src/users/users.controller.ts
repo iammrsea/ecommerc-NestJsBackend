@@ -26,6 +26,7 @@ export class UsersController {
     @Get()
     @UseInterceptors(TransformInterceptor)
     async findAll():Promise<User[]>{
+        console.log('calling the right method')
         return await this.usersService.findAllEmplyees();
     }
 

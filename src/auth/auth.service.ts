@@ -9,7 +9,6 @@ import C from '../constants'
 @Injectable()
 export class AuthService {
     constructor(
-        @Inject(C.REPO_OPTIONS)private repo_options,
         private readonly securePassword: SecurePasswordService,
         private readonly jwtService:JwtService,
         private readonly connection:Connection
@@ -17,8 +16,9 @@ export class AuthService {
         }
 
     async validateUser(username:string,password:string):Promise<any>{
+        console.log('validate ',username)
         try{
-        const user = await this.findByUsername(username,this.repo_options.repoName);
+        const user = await this.findByUsername(username);
         if(user){
             const match = await this.securePassword.compare(password,user.password);
             if(!match){
@@ -40,7 +40,8 @@ export class AuthService {
             user
         }
     }
-    async findByUsername(username:string,repoName:string):Promise<any>{
-        return await this.connection.getRepository(repoName).findOne({username})
+    async findByUsername(username:string):Promise<any>{
+        console.log('username ',username)
+        return await this.connection.getRepository('User').findOne({username})
     }
 }
