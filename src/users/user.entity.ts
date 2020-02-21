@@ -2,11 +2,11 @@ import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn } from 'typeorm
 import {Exclude} from 'class-transformer'
 
 
-enum UserRole{
-  ADMIN="Admin",
-  EMPLOYEE ="Employee",
-  CUSTOMER ="Customer"
-}
+// enum UserRole{
+//   ADMIN="Admin",
+//   EMPLOYEE ="Employee",
+//   CUSTOMER ="Customer"
+// }
 @Entity()
 export class User{
   @PrimaryGeneratedColumn()
@@ -22,12 +22,8 @@ export class User{
   @Exclude({toPlainOnly:true})
   password: string;
 
-  @Column({
-    type: "simple-enum",
-    enum: UserRole,
-    default: UserRole.EMPLOYEE
-  })
-  role: UserRole;
+  @Column()
+  role: string;
 
   @Column({nullable:true})
   address: string;
