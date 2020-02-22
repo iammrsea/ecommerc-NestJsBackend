@@ -1,7 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { Controller,Param, Post, Body,  Get, UseInterceptors, ParseIntPipe, NotFoundException, Delete, Put, UseGuards } from '@nestjs/common';
+import { Controller, Param, Body, Get, UseInterceptors, ParseIntPipe, NotFoundException, Delete, Put, UseGuards, Query } from '@nestjs/common';
 import { User } from './user.entity';
 import { ExcludePasswordInterceptor } from 'src/interceptors/password.interceptor';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
@@ -25,15 +24,8 @@ export class UsersController {
 
     @Get()
     @UseInterceptors(TransformInterceptor)
-    async findAll():Promise<User[]>{
-        console.log('calling the right method')
-        return await this.usersService.findAllEmplyees();
-    }
-
-    @Post()
-    async create(@Body()createUserDto:CreateUserDto):Promise<User>{
-       return await this.usersService.create(createUserDto);
-       
+    async findAll(@Query()queries):Promise<User[]>{
+        return await this.usersService.find(queries.role,queries.limit,queries.cursor);
     }
 
     @Get(':userId')
@@ -52,7 +44,7 @@ export class UsersController {
 
 
    @Put(':userId')
-   @Roles('Employee')
+   @Roles('Employee','Customer')
    async update(
         @Param('userId', new ParseIntPipe())userId: number,
         @Body()updateUserDto: UpdateUserDto

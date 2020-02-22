@@ -11,7 +11,22 @@ export class UpdateUserDto{
     username?:string;
 
     @IsOptional()
-    @IsEmail({})
+    @IsString()
+    address?:string;
+
+    @IsOptional()
+    @IsString()
+    city?:string;
+
+    @IsOptional()
+    @IsNumber()
+    zip?:number;
+
+
+    @IsOptional()
+    @IsEmail()
     email?:string;
+
+
 
 }

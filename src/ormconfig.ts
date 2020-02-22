@@ -8,10 +8,10 @@ import {ConnectionOptions} from 'typeorm';
 
 const config:ConnectionOptions ={
     type: 'sqlite',
-    database: 'database.sqlite',
+    database: 'db.sqlite',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: false,
-    migrationsRun: true,
+    migrationsRun: false,
     logging: true,
     logger: 'file',
     migrations: [__dirname + '/migrations/**/*{.ts,.js}'],

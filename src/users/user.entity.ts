@@ -1,12 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn } from 'typeorm';
 import {Exclude} from 'class-transformer'
 
-
-// enum UserRole{
-//   ADMIN="Admin",
-//   EMPLOYEE ="Employee",
-//   CUSTOMER ="Customer"
-// }
 @Entity()
 export class User{
   @PrimaryGeneratedColumn()
@@ -34,7 +28,7 @@ export class User{
   @Column({nullable:true})
   state: string;
 
-  @Column('int',{nullable:true})
+  @Column({nullable:true})
   zip: number;
 
   @CreateDateColumn()

@@ -8,6 +8,8 @@ export class CursorService{
         return  Base64.encode(String(id));
     }
     decode(cursor:string):number{
+        if(!cursor)
+        return 1;
         return parseInt(Base64.decode(cursor));
     }
 }

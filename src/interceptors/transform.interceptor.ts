@@ -1,33 +1,43 @@
+import { CursorService } from 'src/cursor/cursor.service';
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-interface Meta{
-  hasNext:boolean;
-  cursor: string
-}
-class Response{
-  data: [];
-  meta: Meta
-}
+import C from '../constants';
 
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor{
+  constructor(private readonly cursorService:CursorService){}
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const className = context.getClass();
-    return next.handle().pipe(map(data => this.transformData(data,className)));
+    return next.handle().pipe(map(data => this.transformData(data)));
   }
 
-  private transformData(data,className){
-      console.log('transform interceptor',className);
-      // const res = new Response();
-      // res.data = data;
-
-      // return res;
+  private transformData(data){
+    const hasNext = !!data[C.QUERY_RESULT_LIMIT];
+    const result =  this.getNextCursor(data)
       return {
-        data,
-        meta:{}
+        data: result.userList,
+        meta:{
+          hasNext,
+          nextCursor: result.nextCursor
+        }
       }
+  }
+  private getNextCursor(data){
+    let nextCursor='';
+    let userList;
+    if(data[C.QUERY_RESULT_LIMIT]){
+      const extraUser = data[C.QUERY_RESULT_LIMIT];
+      userList = data.filter(user=>user.id !== extraUser.id);
+      nextCursor = this.cursorService.encode(extraUser.id);
+      return {
+        userList,
+        nextCursor
+      }
+    }
+    return{
+      userList: data,
+      nextCursor
+    }
   }
 }

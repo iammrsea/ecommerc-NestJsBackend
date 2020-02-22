@@ -1,10 +1,9 @@
 import { SecurePasswordService } from './../secure-password/secure-password.service';
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 // import { UserRepository } from 'src/users/user.repository';
 import {JwtService} from '@nestjs/jwt'
 import { Connection } from 'typeorm';
 
-import C from '../constants'
 
 @Injectable()
 export class AuthService {
@@ -16,7 +15,6 @@ export class AuthService {
         }
 
     async validateUser(username:string,password:string):Promise<any>{
-        console.log('validate ',username)
         try{
         const user = await this.findByUsername(username);
         if(user){
@@ -41,7 +39,6 @@ export class AuthService {
         }
     }
     async findByUsername(username:string):Promise<any>{
-        console.log('username ',username)
         return await this.connection.getRepository('User').findOne({username})
     }
 }

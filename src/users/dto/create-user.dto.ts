@@ -1,4 +1,5 @@
-import {IsString,IsEmail,IsNotEmpty, IsEnum} from 'class-validator'
+import {IsString,IsEmail,IsNotEmpty, IsEnum, IsNumber} from 'class-validator'
+import { Optional } from '@nestjs/common';
 
 enum UserRole{
     ADMIN="Admin",
@@ -21,5 +22,21 @@ export class CreateUserDto{
 
     @IsNotEmpty()
     @IsEnum(UserRole)
-    role: UserRole;
+    role: string;
+
+    @Optional()
+    @IsString()
+    address?: string
+
+    @Optional()
+    @IsString()
+    city?: string
+
+    @Optional()
+    @IsString()
+    state?: string
+
+    @Optional()
+    @IsNumber()
+    zip?: number
 }

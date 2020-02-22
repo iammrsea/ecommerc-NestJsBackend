@@ -1,3 +1,4 @@
+import { CursorModule } from './../cursor/cursor.module';
 import { AuthModule } from './../auth/auth.module';
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -9,7 +10,8 @@ import { UserLoginController } from './login.controller';
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserRepository]),
-    AuthModule
+    AuthModule,
+    CursorModule
 ],
   providers: [UsersService],
   controllers: [UsersController,UserLoginController],
