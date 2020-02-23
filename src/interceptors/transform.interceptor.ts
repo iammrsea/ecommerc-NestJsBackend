@@ -16,7 +16,7 @@ export class TransformInterceptor implements NestInterceptor{
     const hasNext = !!data[C.QUERY_RESULT_LIMIT];
     const result =  this.getNextCursor(data)
       return {
-        data: result.userList,
+        data: result.itemList,
         meta:{
           hasNext,
           nextCursor: result.nextCursor
@@ -25,18 +25,18 @@ export class TransformInterceptor implements NestInterceptor{
   }
   private getNextCursor(data){
     let nextCursor='';
-    let userList;
+    let itemList;
     if(data[C.QUERY_RESULT_LIMIT]){
       const extraUser = data[C.QUERY_RESULT_LIMIT];
-      userList = data.filter(user=>user.id !== extraUser.id);
+      itemList = data.filter(user=>user.id !== extraUser.id);
       nextCursor = this.cursorService.encode(extraUser.id);
       return {
-        userList,
+        itemList,
         nextCursor
       }
     }
     return{
-      userList: data,
+      itemList: data,
       nextCursor
     }
   }

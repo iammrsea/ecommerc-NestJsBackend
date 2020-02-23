@@ -1,3 +1,4 @@
+import { OrdersModule } from './../orders/orders.module';
 import { CursorModule } from './../cursor/cursor.module';
 import { AuthModule } from './../auth/auth.module';
 import { Module } from '@nestjs/common';
@@ -11,7 +12,8 @@ import { UserLoginController } from './login.controller';
   imports: [
     TypeOrmModule.forFeature([UserRepository]),
     AuthModule,
-    CursorModule
+    CursorModule,
+    OrdersModule
 ],
   providers: [UsersService],
   controllers: [UsersController,UserLoginController],

@@ -28,6 +28,13 @@ export class UsersService {
             });
        
       }
+    findCustomerOrders(customerId:number):Promise<User>{
+        return this.usersRepository
+                .createQueryBuilder('user')
+                .where('user.id = :id',{id:customerId})
+                .leftJoinAndSelect('user.orders','order')
+                .getOne();
+    }
     
     findOne(id: number): Promise<User> {
     return this.usersRepository.findOne(id);

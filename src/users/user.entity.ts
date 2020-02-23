@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn, OneToMany } from 'typeorm';
 import {Exclude} from 'class-transformer'
+import { Order } from 'src/orders/order.entity';
 
 @Entity()
 export class User{
@@ -30,6 +31,9 @@ export class User{
 
   @Column({nullable:true})
   zip: number;
+
+  @OneToMany(()=>Order,order=>order.user,{cascade:true})
+  orders: Order[]
 
   @CreateDateColumn()
   createdAt: Date

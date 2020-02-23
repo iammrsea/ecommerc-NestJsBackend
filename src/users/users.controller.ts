@@ -1,4 +1,3 @@
-import { AuthService } from './../auth/auth.service';
 import { UsersService } from './users.service';
 import { Controller, Param, Body, Get, UseInterceptors, ParseIntPipe, NotFoundException, Delete, Put, UseGuards, Query } from '@nestjs/common';
 import { User } from './user.entity';
@@ -19,7 +18,6 @@ export class UsersController {
 
     constructor(
         private readonly usersService: UsersService,
-        private readonly authService: AuthService
         ){}
 
     @Get()
@@ -36,6 +34,19 @@ export class UsersController {
         }
         return foundUser;
     }
+
+   @Roles('Customer')
+   @Get(':userId/orders')
+   @UseInterceptors(TransformInterceptor)
+   async findCustomerOrders(@Param('userId',new ParseIntPipe())userId: number){
+       return await this.usersService.findCustomerOrders(userId);
+   }
+
+//    @Roles('Customer')
+//    @Post(':userId/orders')
+//    async createOrder(@Body()createOrderDto: CraeateOrderDto){
+//         return await this.orderService.create(createOrderDto);
+//    }
    @Delete(':userId')
    async delete(@Param('userId', new ParseIntPipe())userId: number){
      await this.usersService.remove(userId);

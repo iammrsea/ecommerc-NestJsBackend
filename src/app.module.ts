@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { AppController } from 'src/app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
@@ -35,4 +35,5 @@ import { CursorModule } from './cursor/cursor.module';
   providers: [AppService],
 })
 export class AppModule {}
+
 
