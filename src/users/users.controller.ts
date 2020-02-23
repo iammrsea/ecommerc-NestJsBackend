@@ -42,11 +42,6 @@ export class UsersController {
        return await this.usersService.findCustomerOrders(userId);
    }
 
-//    @Roles('Customer')
-//    @Post(':userId/orders')
-//    async createOrder(@Body()createOrderDto: CraeateOrderDto){
-//         return await this.orderService.create(createOrderDto);
-//    }
    @Delete(':userId')
    async delete(@Param('userId', new ParseIntPipe())userId: number){
      await this.usersService.remove(userId);
