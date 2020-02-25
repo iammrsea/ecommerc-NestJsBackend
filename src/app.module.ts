@@ -7,6 +7,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
 import { MessagesModule } from './messages/messages.module';
 import {TypeOrmModule} from '@nestjs/typeorm'
+import {ConfigModule, ConfigService} from '@nestjs/config'
+import {StripeModule} from 'nestjs-stripe'
 
 import { SecurePasswordModule } from './secure-password/secure-password.module';
 import { NodemailerModule } from './nodemailer/nodemailer.module';
@@ -29,7 +31,16 @@ import { CursorModule } from './cursor/cursor.module';
     SecurePasswordModule,
     NodemailerModule,
     AuthModule,
-    CursorModule
+    CursorModule,
+    ConfigModule.forRoot({
+      isGlobal:true
+    }),
+    StripeModule.forRootAsync({
+      useFactory: async (configService:ConfigService)=>({
+        apiKey: configService.get('STRIPE_SECRET')
+      }),
+      inject:[ConfigService]
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

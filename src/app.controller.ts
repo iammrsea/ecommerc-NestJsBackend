@@ -1,13 +1,15 @@
-import { Controller, Get, UseGuards,Request } from '@nestjs/common';
+import { Controller, Get, UseGuards,Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthGuard } from '@nestjs/passport';
-import { Request as ExpresReq } from 'express';
+import { InjectStripe } from 'nestjs-stripe';
+import Stripe from 'stripe'
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    // private readonly authService: AuthService
+    @InjectStripe()
+    private readonly stripeService:Stripe
     ) {}
 
   @Get()
@@ -16,8 +18,8 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Get('profile')
-  async getProfile(@Request()req: ExpresReq){
-    return req.user;
+  @Post('checkout')
+  async getProfile(@Body()checckoutDto){
+    return checckoutDto;
   }
 }

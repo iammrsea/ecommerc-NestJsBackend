@@ -1,13 +1,14 @@
 import {createTransport} from 'nodemailer';
 import C from '../constants';
 import Mail = require('nodemailer/lib/mailer');
+import { ConfigService } from '@nestjs/config';
 
 
 
 export const providers =[
     {
         provide: C.MAIL_TRANSPORTER,
-        useFactory: ():Mail=> createTransport({
+        useFactory: async(configService:ConfigService):Promise<Mail>=> createTransport({
             service:'gmail',
             host: 'smtp.gmail.com',
             port: 465,
@@ -15,12 +16,13 @@ export const providers =[
             auth: {
                 type: 'OAuth2',
                 user: 'andysopuru@gmail.com',
-                clientId: process.env.CLIENT_ID,
-                clientSecret: process.env.CLIENT_SECRET,
-                refreshToken: process.env.REFRESH_TOKEN,
-                accessToken: process.env.ACCESS_TOKEN, 
+                clientId: configService.get('CLIENT_ID'),
+                clientSecret: configService.get('CLIENT_SECRET'),
+                refreshToken: configService.get('REFRESH_TOKEN'),
+                accessToken: configService.get('ACCESS_TOKEN'), 
             }
-        })
+        }),
+        inject:[ConfigService]
     },
     
 ]

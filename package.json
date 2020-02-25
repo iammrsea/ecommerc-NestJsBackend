@@ -22,10 +22,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "fake:users":"ts-node ./fake/index.ts"
+    "fake:users": "ts-node ./fake/index.ts"
   },
   "dependencies": {
     "@nestjs/common": "^6.10.14",
+    "@nestjs/config": "^0.2.4",
     "@nestjs/core": "^6.10.14",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.1",
@@ -39,6 +40,7 @@
     "class-validator": "^0.11.0",
     "dotenv": "^8.2.0",
     "js-base64": "^2.5.2",
+    "nestjs-stripe": "^0.3.0",
     "nodemailer": "^6.4.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -47,6 +49,7 @@
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.4",
     "sqlite3": "^4.1.1",
+    "stripe": "^8.21.0",
     "typeorm": "^0.2.22"
   },
   "devDependencies": {
