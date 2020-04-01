@@ -423,10 +423,12 @@
     "@angular-devkit/schematics" "7.3.8"
     fs-extra "8.1.0"
 
-"@nestjs/serve-static@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-1.0.2.tgz#8baa1a20fa39457186be4ec3e29b446d83d3fcb0"
-  integrity sha512-PRTrmytKXGSDYJn8i0I/XiSV01tygh4L0SR5bq1/zxIT5HHK/edmlULKfHeeA2pHQV7YLxMH33al/TPlcn4tXQ==
+"@nestjs/serve-static@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-2.1.0.tgz#fe2955d8d176674046d2eb16724803ca409384d3"
+  integrity sha512-syC7x3vacNYOAqpITqiPd7NS0gAc3IbzexyMOpUu00mVt/8NZc3zXNEV5r4DeatRKUwc11tt1TRlMEsmTLTQIA==
+  dependencies:
+    path-to-regexp "0.1.7"
 
 "@nestjs/testing@^6.10.14":
   version "6.11.7"
@@ -1835,6 +1837,14 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+
+cloudinary@^1.20.0:
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.20.0.tgz#88f3964be91cc9808b5c7834bf06e03d22954636"
+  integrity sha512-/e76lEr5PS5gefvWUJ2Ou90zuEQCc0agTq8hrx2uxfFhUGlzEQ9mPPcwAeHFY1gj9caq0iHLuvTDvBbLSRhX9w==
+  dependencies:
+    lodash "^4.17.11"
+    q "^1.5.1"
 
 co@^4.6.0:
   version "4.6.0"
@@ -4493,7 +4503,7 @@ lodash.toarray@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
 
-lodash@^4.17.10, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15:
+lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -4794,7 +4804,7 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-multer@1.4.2:
+multer@1.4.2, multer@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.2.tgz#2f1f4d12dbaeeba74cb37e623f234bf4d3d2057a"
   integrity sha512-xY8pX7V+ybyUpbYMxtjM9KAiD9ixtg5/JkeKUTD6xilfDv0vzzOFcCp4Ljb1UU3tSOM3VTZtKo63OmzOrGi3Cg==
@@ -5672,6 +5682,11 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+
+q@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+  integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
 qs@6.7.0:
   version "6.7.0"

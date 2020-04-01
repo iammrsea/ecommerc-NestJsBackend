@@ -3,27 +3,25 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { Product } from 'src/products/product.entity';
+import { Category } from 'src/categories/category.entity';
 
 @Entity()
-export class Category {
+export class Sales {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  name: string;
+  @Column()
+  qty: number;
 
-  @Column({ nullable: true })
-  total: number;
+  @Column({ type: 'float', nullable: true })
+  price: number;
 
-  @OneToMany(
-    () => Product,
-    product => product.category,
-    { cascade: true },
-  )
-  products: Product[];
+  @Column({ type: 'float' })
+  amount: number;
+
+  @Column({ type: 'float' })
+  profit: number;
 
   @CreateDateColumn()
   createdAt: Date;

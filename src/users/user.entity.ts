@@ -1,58 +1,70 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn, OneToMany } from 'typeorm';
-import {Exclude} from 'class-transformer'
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  OneToMany,
+} from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { Order } from 'src/orders/order.entity';
 
 @Entity()
-export class User{
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({unique:true})
+  @Column({ unique: true })
   username: string;
 
-  @Column({unique:true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
-  @Exclude({toPlainOnly:true})
+  @Exclude({ toPlainOnly: true })
   password: string;
 
   @Column()
   role: string;
 
-  @Column({nullable:true})
-  address: string;
+  @Column({ nullable: true })
+  phone: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   city: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   state: string;
 
-  @Column({nullable:true})
-  zip: number;
+  @Column({ nullable: true })
+  zip: string;
 
-  @OneToMany(()=>Order,order=>order.user,{cascade:true})
-  orders: Order[]
+  @Column({ nullable: true })
+  rebuild_token: string;
+
+  @OneToMany(
+    () => Order,
+    order => order.user,
+    { cascade: true },
+  )
+  orders: Order[];
 
   @CreateDateColumn()
-  createdAt: Date
+  createdAt: Date;
 
   @CreateDateColumn()
-  updatedAt: Date
+  updatedAt: Date;
 
   /**
    * @Column({
    * default: ()=>"NOW()"
    * })
    * createdAt: Date
-   * 
+   *
    * @Column({
    * default: ()=>"NOW()"
    * })
    * updatedAt: Date
-   * 
-   * 
+   *
+   *
    */
 }
-

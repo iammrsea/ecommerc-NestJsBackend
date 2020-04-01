@@ -1,21 +1,42 @@
 import { User } from './../users/user.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
-export class Order{
+export class Order {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id:number
+  @Column('int')
+  qty: number;
 
-    @Column('text')
-    description: string;
+  @Column('float')
+  amount: number;
 
-    @ManyToOne(()=>User,user=>user.orders)
-    user: User;
+  @Column()
+  items: string;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @Column()
+  status: string;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @Column()
+  currency: string;
+
+  @ManyToOne(
+    () => User,
+    user => user.orders,
+  )
+  user: User;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

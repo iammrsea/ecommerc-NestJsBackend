@@ -1,12 +1,11 @@
-import { User } from "src/users/user.entity";
-import { IsString, IsOptional } from "class-validator";
+import { User } from 'src/users/user.entity';
+import { IsString, IsOptional } from 'class-validator';
 
-export class UpdateOrderDto{
+export class UpdateOrderDto {
+  @IsString()
+  @IsOptional()
+  status?: string;
 
-    @IsString()
-    @IsOptional()
-    description?: string;
-
-    @IsOptional()
-    user?: User;
+  @IsOptional()
+  user?: User;
 }

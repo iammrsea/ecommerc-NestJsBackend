@@ -1,3 +1,4 @@
+import { User } from './../users/user.entity';
 import {
   IsNotEmpty,
   IsNumber,
@@ -19,8 +20,20 @@ export class Intent {
   @IsEnum(Currency)
   currency: Currency;
 
-  @IsOptional()
-  items?: object;
+  @IsNotEmpty()
+  @IsString()
+  items: string;
+
+  @IsNotEmpty()
+  user: User;
+
+  @IsNotEmpty()
+  @IsNumber()
+  qty: number;
+
+  @IsNotEmpty()
+  @IsString()
+  status: string;
 
   toString(): string {
     return `amount: ${this.amount}, currency: ${this.currency}`;

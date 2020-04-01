@@ -1,42 +1,46 @@
-import {IsString,IsEmail,IsNotEmpty, IsEnum, IsNumber} from 'class-validator'
-import { Optional } from '@nestjs/common';
+import {
+  IsString,
+  IsEmail,
+  IsNotEmpty,
+  IsEnum,
+  IsOptional,
+} from 'class-validator';
 
-enum UserRole{
-    ADMIN="Admin",
-    EMPLOYEE ="Employee",
-    CUSTOMER ="Customer"
+enum UserRole {
+  ADMIN = 'Admin',
+  EMPLOYEE = 'Employee',
+  CUSTOMER = 'Customer',
 }
-export class CreateUserDto{
+export class CreateUserDto {
+  @IsNotEmpty()
+  @IsString()
+  username: string;
 
-    @IsNotEmpty()
-    @IsString()
-    username: string;
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
 
-    @IsNotEmpty()
-    @IsEmail()
-    email: string;
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 
-    @IsNotEmpty()
-    @IsString()
-    password: string;
+  @IsNotEmpty()
+  @IsEnum(UserRole)
+  role: string;
 
-    @IsNotEmpty()
-    @IsEnum(UserRole)
-    role: string;
+  @IsString()
+  @IsOptional()
+  phone?: string;
 
-    @Optional()
-    @IsString()
-    address?: string
+  @IsString()
+  @IsOptional()
+  city?: string;
 
-    @Optional()
-    @IsString()
-    city?: string
+  @IsOptional()
+  @IsString()
+  state?: string;
 
-    @Optional()
-    @IsString()
-    state?: string
-
-    @Optional()
-    @IsNumber()
-    zip?: number
+  @IsOptional()
+  @IsString()
+  zip?: string;
 }

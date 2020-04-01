@@ -1,31 +1,46 @@
 import { Category } from '../../categories/category.entity';
-import { IsString, IsNotEmpty, IsNumber, IsBoolean } from "class-validator";
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsBoolean,
+  IsOptional,
+  ValidateIf,
+} from 'class-validator';
 
-export class CreateProductDto{
-   @IsString()
-   @IsNotEmpty()
-   name: string;
+export class CreateProductDto {
+  @ValidateIf(product => {
+    product.price = +product.price;
+    product.total = +product.total;
+    product.category = +product.category;
+    product.available = !!+product.available;
 
-   @IsNumber()
-   @IsNotEmpty()
-   price: number;
+    return true;
+  })
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-   @IsString()
-   @IsNotEmpty()
-   description: string;
+  @IsNumber()
+  @IsNotEmpty()
+  price: number;
 
-   @IsBoolean()
-   @IsNotEmpty()
-   available: boolean;
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 
-   @IsNumber()
-   @IsNotEmpty()
-   total:number
+  @IsBoolean()
+  @IsNotEmpty()
+  available: boolean;
 
-   @IsString()
-   @IsNotEmpty()
-   imageUrl: string;
+  @IsNumber()
+  @IsNotEmpty()
+  total: number;
 
-   @IsNotEmpty()
-   category: Category
+  @IsString()
+  @IsOptional()
+  imageUrl: string;
+
+  @IsNotEmpty()
+  category: Category;
 }
