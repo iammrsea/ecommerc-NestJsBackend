@@ -1,8 +1,5 @@
 {
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
-  "compilerOptions": {
-    "assets": ["uploads/**/*", "**/*.html"],
-    "watchAssets": true
-  }
+  "compilerOptions": {}
 }

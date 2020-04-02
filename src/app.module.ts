@@ -19,6 +19,7 @@ import { CursorModule } from './cursor/cursor.module';
 import { UploaderModule } from './uploader/uploader.module';
 import { SalesModule } from './sales/sales.module';
 
+console.log('ormconfig', ormconfig);
 @Module({
   imports: [
     UsersModule,

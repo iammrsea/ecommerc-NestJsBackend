@@ -1,17 +1,18 @@
 import { ConnectionOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
-import * as fs from 'fs';
+// import * as fs from 'fs';
 
-const envData: any = dotenv.parse(fs.readFileSync('.env'));
-// console.log('env Data', envData);
+// const process.env: any = dotenv.parse(fs.readFileSync('.env'));
+// console.log('env Data', process.env);
+dotenv.config();
 
 const config: ConnectionOptions = {
   type: 'mysql',
-  host: envData.DB_HOST,
-  port: envData.DB_PORT,
-  password: envData.DB_PASSWORD,
-  username: envData.DB_USERNAME,
-  database: envData.DB_NAME,
+  host: process.env.DB_HOST,
+  port: +process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  username: process.env.DB_USERNAME,
+  database: process.env.DB_NAME,
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: false,
   migrationsRun: false,
